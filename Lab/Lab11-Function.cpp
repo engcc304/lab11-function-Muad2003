@@ -23,12 +23,25 @@
     Output:
         Not Pass.
 */
+int armstrong( int number ) {
+    int a = number / 100 ;
+    int b = ( number - a * 100 ) / 10 ;
+    int c = ( number - ( ( a * 100 ) + ( b * 10 ) ) ) / 1 ;
+    a = a * a * a ;
+    b = b * b * b ;
+    c = c * c * c ;
+    return a + b + c ;
+} // end funtion armstrong
 
 #include <stdio.h>
 
 int main() {
 
-    //--| YOUR CODE HERE
-
-    return 0 ;
+    int numbers ;
+    printf ( "Enter Numbers:\n" ) ;
+    scanf ( "%d", &numbers ) ;
+    int ans = armstrong( numbers) ;
+    if ( ans == numbers ) printf ( "Pass." ) ;
+    else printf ( "Not Pass." ) ;
+    
 }//end main function
