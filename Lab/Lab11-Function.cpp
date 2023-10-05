@@ -23,17 +23,38 @@
     Output:
         Not Pass.
 */
-int armstrong( int number ) {
-    int a = number / 100 ;
-    int b = ( number - a * 100 ) / 10 ;
-    int c = ( number - ( ( a * 100 ) + ( b * 10 ) ) ) / 1 ;
-    a = a * a * a ;
-    b = b * b * b ;
-    c = c * c * c ;
-    return a + b + c ;
-} // end funtion armstrong
 
 #include <stdio.h>
+
+int armstrong( int number ) {
+
+    // หาหลักเลขทั้งหมด
+    int count = 0 ;
+    if ( number / 1000 >= 1 ) {
+        count = 4 ;
+    } else if ( number / 100 >= 1 ) {
+        count = 3 ;
+    } else if ( number / 10 >= 1 ) {
+        count = 2 ;
+    } // end if
+    
+    // หาเลขในแต่ละหลัก
+    int d = number / 1000 ; // หาเลขหลักพัน
+    int c = ( number - d * 1000 ) / 100 ; // หาเลขหลักร้อย
+    int b = ( number - ( d * 1000 + c * 100  ) ) / 10 ; // หาเลขหลักสิบ
+    int a = ( number - ( d * 1000 + c * 100  +  b * 10  ) ) / 1 ; // หาเลขหลักหน่วย
+
+    int aa = a , bb = b , cc = c , dd = d ;
+
+    for ( int i = 1 ; i < count ; i++ ) {
+        aa = aa * a ;
+        bb = bb * b ;
+        cc = cc * c ;
+        dd = dd * d ;
+    }  // end for
+    
+    return aa + bb + cc + dd ;
+} // end funtion armstrong
 
 int main() {
 
