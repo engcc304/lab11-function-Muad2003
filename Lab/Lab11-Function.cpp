@@ -26,9 +26,43 @@
 
 #include <stdio.h>
 
+int armstrong( int number ) {
+
+    // หาหลักเลขทั้งหมด
+    int count = 0 ;
+    if ( number / 1000 >= 1 ) {
+        count = 4 ;
+    } else if ( number / 100 >= 1 ) {
+        count = 3 ;
+    } else if ( number / 10 >= 1 ) {
+        count = 2 ;
+    } // end if
+    
+    // หาเลขในแต่ละหลัก
+    int d = number / 1000 ; // หาเลขหลักพัน
+    int c = ( number - d * 1000 ) / 100 ; // หาเลขหลักร้อย
+    int b = ( number - ( d * 1000 + c * 100  ) ) / 10 ; // หาเลขหลักสิบ
+    int a = ( number - ( d * 1000 + c * 100  +  b * 10  ) ) / 1 ; // หาเลขหลักหน่วย
+
+    int aa = a , bb = b , cc = c , dd = d ;
+
+    for ( int i = 1 ; i < count ; i++ ) {
+        aa = aa * a ;
+        bb = bb * b ;
+        cc = cc * c ;
+        dd = dd * d ;
+    }  // end for
+    
+    return aa + bb + cc + dd ;
+} // end funtion armstrong
+
 int main() {
 
-    //--| YOUR CODE HERE
-
-    return 0 ;
+    int numbers ;
+    printf ( "Enter Numbers:\n" ) ;
+    scanf ( "%d", &numbers ) ;
+    int ans = armstrong( numbers) ;
+    if ( ans == numbers ) printf ( "Pass." ) ;
+    else printf ( "Not Pass." ) ;
+    
 }//end main function
